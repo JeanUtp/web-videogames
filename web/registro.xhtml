@@ -1,0 +1,103 @@
+<ui:composition template="/WEB-INF/template/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <ui:param name="title" value="Registro"/>
+
+    <ui:define name="content">
+        <div class="container">
+            <input type="hidden" id="idusersesion" value="#{usuarios.idusersesion}" />
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 text-center ">
+                                <a href="#{request.contextPath}/"><h:graphicImage name="img/fondoL.jpg" class="w-50"/></a>
+                            </div>
+                            <div class="col-md-5 ">
+                                <br></br>
+                                <h:form>
+                                    <!--NOMBRE-->
+                                    <h:outputLabel value="Ingresa tu Nombre: "/><br/>
+                                    <h:inputText id="name" value="#{usuarios.data.nombre}" class="form-control mb-2" required="true" requiredMessage="Se necesita un Nombre">
+                                        <f:validateLength minimum="2"/>
+                                    </h:inputText>
+                                    <br/>
+                                    <!--APELLIDO-->
+                                    <h:outputLabel value="Ingresa tu Apellido: "/><br/>
+                                    <h:inputText value="#{usuarios.data.apellido}" class="form-control mb-2" required="true" requiredMessage="Se necesita un Apellido">
+                                        <f:validateLength minimum="2"/>
+                                    </h:inputText>
+                                    <br/>
+                                    <!--CORREO-->
+                                    <h:outputLabel for="gmail" value="Ingresa tu Correo Electronico: "/><br/>
+                                    <h:inputText id="gmail"  value="#{usuarios.data.correo}" class="form-control mb-2" required="true" requiredMessage="Se necesita un Correo">
+                                        <f:validateLength minimum="10"/>
+                                        <f:validator validatorId="EmailValidator"/>
+                                    </h:inputText>
+                                    <br/>
+                                    <!--TELEFONO-->
+                                    <h:outputLabel value="Ingresa tu Telefono: "/><br/>
+                                    <h:inputText value="#{usuarios.data.numero}" class="form-control" required="true" requiredMessage="Se necesita un Telefono">
+                                        <f:validateLength minimum="9"/>
+                                    </h:inputText>
+                                    <br/>
+                                    <!--DNI-->
+                                    <h:outputLabel value="Ingresa tu DNI: "/><br/>
+                                    <h:inputText value="#{usuarios.data.dni}" class="form-control" required="true" requiredMessage="Se necesita un DNI">
+                                        <f:validateLength minimum="8"/>
+                                    </h:inputText>
+                                    <br/>
+                                    <!--DISTRITO-->
+                                    <h:outputLabel value="En que distrito vives?: "/><br/>
+                                    
+<!--                                    <h:inputText value="#{usuarios.data.direccion}" class="form-control" required="true" requiredMessage="Se necesita un Distrito">
+                                        <f:validateLength minimum="3"/>
+                                    </h:inputText>-->
+                                    
+                                    <h:selectOneMenu id="option" value="#{usuarios.data.direccion}" class="form-control" required="true" requiredMessage="Se necesita un Distrito">
+                                        <f:selectItem itemLabel="Puente Piedra" itemValue="Puente Piedra"/>
+                                        <f:selectItem itemLabel="Comas" itemValue="Comas"/>
+                                        <f:selectItem itemLabel="Ancón" itemValue="Ancón"/>
+                                        <f:selectItem itemLabel="Barranco" itemValue="Barranco"/>
+                                        <f:facet name="footer">
+                                            <p:divider styleClass="p-mt-0" />
+                                            <h:outputText value="3 options" style="font-weight:bold;"/>
+                                        </f:facet>
+                                    </h:selectOneMenu>
+                                    <br/>
+                                    
+                                    
+                                    
+                                    <!--PASSWORD-->
+                                    <h:outputLabel for="pwd1" value="Ingresa tu Contraseña: "/><br/>
+                                    <p:password id="pwd1" value="#{usuarios.data.clave}" class="form-control" match="pwd2" label="Password 1" required="true"/>
+                                    <br/>
+                                    <h:outputLabel for="pwd2" value="Ingresa tu contraseña otra vez: "/><br/>
+                                    <p:password id="pwd2" value="#{usuarios.data.clave}" class="form-control" label="Password 2" required="true"/>
+                                    <br/>
+                                    <p:commandButton value="Registro" action="#{usuarios.usuarioIns()}" 
+                                                     class="btn_general2 w-100"
+                                                     style="background-color: #f76b6a; color: white; border: none;"
+                                                     update="@form"/>
+                                    <p:messages id="messages" showDetail="true">
+                                        <p:autoUpdate/>
+                                    </p:messages>
+                                </h:form>
+                                <h:outputText value="#{usuarios.msg}" />
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <br></br>
+                </div>
+            </div>
+            <br/>
+        </div>
+        
+    </ui:define>
+
+</ui:composition>

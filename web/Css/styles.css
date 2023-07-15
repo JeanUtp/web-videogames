@@ -1,0 +1,166 @@
+/* Estilos para el chatbot */
+
+.chat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 340px;
+  height: 450px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agrega la sombra 3D */
+}
+
+#chat-header {
+  background-color: #f76b6a;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chat-header p {
+  margin: 0;
+  color: white;
+  font-weight: 600;
+}
+
+#chat-header button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#chat-body {
+  padding: 10px;
+  height: 357px;
+  overflow-y: auto;
+}
+
+#chat-footer {
+  padding: 0px;
+  display: flex;
+  border: 2px solid #ccc;
+}
+
+#message-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: transparent;
+  width: 1000%;
+}
+
+#send-button {
+  border: none;
+  background-color:white;
+  color: #fff;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#chat-float-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  
+  width: 60px;
+  height: 60px;
+  border-radius: 50%; /* Hace que el botón sea circular */
+  background-color: #f1f1f1;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agrega la sombra 3D */
+}
+
+#toggle-chat-button {
+  border: none;
+  background-color: #f76b6a;
+  color: #fff;
+  font-size: 18px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-message {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.timestamp {
+  font-size: 12px;
+}
+
+.user-message:not(:first-child) .message-content {
+  margin-top: 2px; /* Añadir un margen superior para separar los mensajes */
+}
+
+.user-message .message-content {
+  display: inline-block;
+  word-break: break-word; /* Romper palabras largas en varias líneas */
+  background-color: #f2f2f2; /* Aplicar el background-color al div */
+  border-radius: 5px;
+  align-self: flex-end;
+  overflow: hidden; /* Evitar que el mensaje se desborde fuera del contenedor */
+  height: auto; /* Ajustar la altura automáticamente */
+  max-width: 70%; /* Limitar el ancho máximo del mensaje */
+  line-height: 1.3; /* Espaciado entre las filas del texto */
+  color: black; /* Color de fuente para el texto */
+  padding: 8px 10px; /* Añadir padding al contenido del mensaje */
+}
+
+.user-message .timestamp {
+  align-self: flex-end;
+  font-size: 12px; /* Tamaño de fuente más pequeño para la fecha y hora */
+  color: #777777; /* Color de fuente para la fecha y hora */
+  margin-top: 2px;
+}
+
+.bot-message:not(:first-child) .message-content {
+  margin-top: 2px; /* Añadir un margen superior para separar los mensajes */
+}
+
+.bot-message .message-content {
+  display: inline-block;
+  word-break: break-word; /* Romper palabras largas en varias líneas */
+  background-color: #f76b6a; /* Aplicar el background-color al div */
+  border-radius: 5px;
+  overflow: hidden; /* Evitar que el mensaje se desborde fuera del contenedor */
+  height: auto; /* Ajustar la altura automáticamente */
+  max-width: 70%; /* Limitar el ancho máximo del mensaje */
+  line-height: 1.3; /* Espaciado entre las filas del texto */
+  color: white; /* Color de fuente para el texto */
+  padding: 8px 10px; /* Añadir padding al contenido del mensaje */
+}
+
+.bot-message .timestamp {
+  font-size: 12px; /* Tamaño de fuente más pequeño para la fecha y hora */
+  color: #777777; /* Color de fuente para la fecha y hora */
+  margin-top: 2px;
+}
+.three-d-div {
+  perspective: 800px; /* Define la perspectiva */
+  transform-style: preserve-3d; /* Mantiene la transformación en 3D */
+  transform: rotateY(20deg); /* Rota el div en el eje Y */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Agrega la sombra 3D */
+
+  /* Estilos adicionales según tus preferencias */
+  width: 200px;
+  height: 200px;
+  background-color: #f1f1f1;
+}
+
+ .v-line{
+    border-left: 1px solid #aaaaaa;
+    height:100%;
+    left: 50%;
+    position: absolute;
+   }

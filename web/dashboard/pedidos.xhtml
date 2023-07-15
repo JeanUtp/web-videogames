@@ -1,0 +1,52 @@
+<ui:composition template="/WEB-INF/template/layout2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <ui:param name="title" value="Pedidos"/>
+    <ui:define name="content">
+        <section class="about" id="about">
+            <h:form>
+                <p:toolbar>
+                    <p:toolbarGroup align="right">
+                        <p:fileUpload mode="simple" skinSimple="true" label="Import" chooseIcon="pi pi-download"/>
+                        <p:commandButton value="Export" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
+                            <p:dataExporter type="pdf" target="dt-products" fileName="products"/>
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                </p:toolbar>
+                <div class="card">
+                    <h3>Pedidos</h3>
+                    <p:dataTable var="lis" value="#{pedidos.pedidoSel()}" reflow="true" rows="5" paginator="true">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{lis.id}"/>
+                        </p:column>
+
+                        <p:column headerText="Fecha Pedido">
+                            <h:outputText value="#{lis.fecha}"/>
+                        </p:column>
+
+                        <p:column headerText="Usuario">
+                            <h:outputText value="#{lis.usu.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Destino">
+                            <h:outputText value="#{lis.del.destino}"/>
+                        </p:column>
+
+                        <p:column headerText="Encargado">
+                            <h:outputText value="#{lis.del.mot.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Detalle">
+                            <p:commandButton value="Detalle" action="#{pedidos.detalle(lis.id)}" styleClass="ui-button-success" style="margin-right: .2rem">
+                                <p:resetInput target=""/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+            </h:form>
+        </section>
+    </ui:define>
+</ui:composition>

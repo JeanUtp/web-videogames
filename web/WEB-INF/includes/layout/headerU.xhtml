@@ -1,0 +1,65 @@
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <div class="container-header navbar-fixed-top">
+        <input type="checkbox" name="" id="check"/>
+
+        <div class="logo-container">
+            <a href="#{request.contextPath}/"><h:graphicImage name="img/loggo1.png" /></a>
+        </div>
+
+        <div class="nav-btn-header">
+            <div class="nav-links-header">
+                <ul>
+                    <li class="nav-link" style="--i: .6s">
+                        <h:link outcome="nosotros" value="Nosotros"/>
+                    </li>
+                    <li class="nav-link" style="--i: .6s">
+                        <h:link outcome="tienda" value="Tienda"/>
+                    </li>
+                    <li class="nav-link" style="--i: .6s">
+                        <h:link outcome="contacto" value="Contacto"/>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="log-sign" style="--i: 1.8s">
+                <li class="nav-link" style="--i: .85s">
+                    <a href="#">NombreUsuario<i class="fas fa-caret-down"></i></a>
+                    <div class="dropdown">
+                        <ul>
+                            <li class="dropdown-link">
+                                <h:link outcome="carrito" value="Carrito"/>
+                            </li>
+                            <li class="dropdown-link">
+                                <h:link outcome="pedidos" value="Pedidos"/>
+                            </li>
+                            <li class="dropdown-link">
+                                <a href="#">Cerrar Sesion</a>
+                            </li>
+                            <div class="arrow"></div>
+                        </ul>
+                    </div>
+                </li>
+            </div>
+        </div>
+
+        <div class="hamburger-menu-container">
+            <div class="hamburger-menu">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(document).scroll(function () {
+                var $nav = $("header");
+                $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+            });
+        });
+    </script>
+</ui:composition>

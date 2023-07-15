@@ -1,0 +1,105 @@
+<ui:composition template="/WEB-INF/template/layout2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <ui:param name="title" value="Motorizados"/>
+    <ui:define name="content">
+        <section class="about" id="about">
+
+            <div class="card" style="height: 100vh">
+                <style>
+                    /* reset on the showcase style*/
+                    body .ui-panelgrid .ui-panelgrid-cell {
+                        background-color: transparent;
+                    }
+
+                    /* example use of styles for your form */
+                    .my-heading-row {
+                        background-color: var(--surface-c);
+                        font-weight: bold;
+                    }
+                </style>
+                <h:form style="width: 50vw">
+                    <p:breadCrumb>
+                        <p:menuitem value="Dashboard"/>
+                        <p:menuitem value="Dashboard"/>
+                        <p:menuitem value="Proveedor"/>
+                        <p:menuitem value="Nuevo"/>
+                    </p:breadCrumb>
+                    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+                    <br/>
+                    <p:fieldset legend="Nuevo Proveedor" >
+                        <p:messages>
+                            <p:autoUpdate/>
+                        </p:messages>
+
+                        <p:panelGrid columns="4"
+                                     columnClasses="ui-grid-col-4,ui-grid-col-8,ui-grid-col-4,ui-grid-col-8"
+                                     layout="grid" id="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent;">
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Nombre del proveedor "/><br/>
+                                    <h:inputText value="#{proveedores.data.nombre}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita un Nombre">
+                                        <f:validateLength minimum="2"/>
+                                    </h:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel for="gmail" value="Ingresa su Correo Electronico "/><br/>
+                                    <h:inputText id="gmail"  value="#{proveedores.data.correo}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita un Correo">
+                                        <f:validateLength minimum="10"/>
+                                        <f:validator validatorId="EmailValidator"/>
+                                    </h:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Dirección del proveedor "/><br/>
+                                    <h:inputText value="#{proveedores.data.direccion}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita una Dirección">
+                                        <f:validateLength minimum="5"/>
+                                    </h:inputText>
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="RUC del proveedor "/><br/>
+                                    <h:inputText value="#{proveedores.data.ruc}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita un RUC" 
+                                                 onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                                        <f:validateLength minimum="11" maximum="12"/>
+                                    </h:inputText>
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Número del proveedor "/><br/>
+                                    <h:inputText value="#{proveedores.data.numero}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita un Número"
+                                                  onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                                        <f:validateLength minimum="5" maximum="9"/>
+                                    </h:inputText>
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                        <p:row>
+                            <p:column styleClass="ui-grid-col-12">
+                                <p:commandButton value="Agregar Proveedor" action="#{proveedores.proveedorIns()}" style="width: 100%" update="@form"/>
+                                <br/>
+                                <br/>
+                                <p:linkButton outcome="proveedores" value="Atrás" style="width: 100%;" styleClass="ui-button-success">
+
+                                </p:linkButton>
+                            </p:column>
+                        </p:row>
+
+                    </p:fieldset>
+                </h:form>
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>

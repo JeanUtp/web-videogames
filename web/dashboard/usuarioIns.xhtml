@@ -1,0 +1,154 @@
+<ui:composition template="/WEB-INF/template/layout2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <ui:param name="title" value="Usuarios"/>
+    <ui:define name="content">
+        <section class="about" id="about">
+
+            <div class="card" style="height: 100vh">
+                <style>
+                    /* reset on the showcase style*/
+                    body .ui-panelgrid .ui-panelgrid-cell {
+                        background-color: transparent;
+                    }
+
+                    /* example use of styles for your form */
+                    .my-heading-row {
+                        background-color: var(--surface-c);
+                        font-weight: bold;
+                    }
+                </style>
+                <h:form style="width: 50vw">
+                    <p:breadCrumb>
+                        <p:menuitem value="Dashboard"/>
+                        <p:menuitem value="Dashboard"/>
+                        <p:menuitem value="Usuario"/>
+                        <p:menuitem value="Nuevo"/>
+                    </p:breadCrumb>
+                    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+                    <br/>
+                    <p:fieldset legend="Nuevo Usuario">
+                        <p:messages>
+                            <p:autoUpdate/>
+                        </p:messages>
+
+                        <p:panelGrid columns="4"
+                                     columnClasses="ui-grid-col-4,ui-grid-col-8,ui-grid-col-4,ui-grid-col-8"
+                                     layout="grid" id="grid"
+                                     styleClass="ui-panelgrid-blank ui-fluid"
+                                     style="border:0px none; background-color:transparent; text-align: left;">
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Nombre del usuario "/><br/>
+                                    <h:inputText value="#{usuarios.data.nombre}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita un Nombre">
+                                        <f:validateLength minimum="2"/>
+                                    </h:inputText>
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Apellidos del usuario "/><br/>
+                                    <h:inputText value="#{usuarios.data.apellido}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita Apellidos">
+                                        <f:validateLength minimum="4"/>
+                                    </h:inputText>
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Ingresar su DNI "/><br/>
+                                    <h:inputText value="#{usuarios.data.dni}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita DNI" 
+                                                 onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                                        <f:validateLength minimum="8" maximum="8"/>
+                                    </h:inputText>
+
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Ingresar su número "/><br/>
+                                    <h:inputText value="#{usuarios.data.numero}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita un número de celular"
+                                                  onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;">
+                                        <f:validateLength minimum="9" maximum="9"/>
+                                    </h:inputText>
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Ingresar su Distrito"/><br/>
+                                    <h:selectOneMenu id="option" value="#{usuarios.data.direccion}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita su Distrito">
+                                        <f:selectItem itemLabel="Puente Piedra" itemValue="Puente Piedra"/>
+                                        <f:selectItem itemLabel="Comas" itemValue="Comas"/>
+                                        <f:selectItem itemLabel="Ancon" itemValue="Ancón"/>
+                                        <f:selectItem itemLabel="Barranco" itemValue="Barranco"/>
+                                        <f:facet name="footer">
+                                            <p:divider styleClass="p-mt-0" />
+                                            <h:outputText value="3 options" style="font-weight:bold;"/>
+                                        </f:facet>
+                                    </h:selectOneMenu>
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel for="gmail" value="Ingresa su Correo Electronico: "/><br/>
+                                    <h:inputText id="gmail"  value="#{usuarios.data.correo}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita un Correo">
+                                        <f:validateLength minimum="10"/>
+                                        <f:validator validatorId="EmailValidator"/>
+                                    </h:inputText>
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel value="Tipo de usuario"/><br/>
+                                    <h:selectOneMenu id="option2" value="#{usuarios.data.tipo}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" required="true" requiredMessage="Se necesita un Privilegio">
+                                        <f:selectItem itemLabel="CLIENT" itemValue="CLIENT"/>
+                                        <f:selectItem itemLabel="ADMIN" itemValue="ADMIN"/>
+                                        <f:facet name="footer">
+                                            <p:divider styleClass="p-mt-0" />
+                                            <h:outputText value="3 options" style="font-weight:bold;"/>
+                                        </f:facet>
+                                    </h:selectOneMenu>
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel for="pwd1" value="Ingresa su Contraseña"/><br/>
+                                    <p:password id="pwd1" value="#{usuarios.data.clave}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" match="pwd2" label="Password 1" required="true"/>
+
+                                </p:column>
+                            </p:row>
+                            <p:row>
+                                <p:column styleClass="ui-grid-col-12">
+                                    <h:outputLabel for="pwd2" value="Ingresa su contraseña otra vez"/><br/>
+                                    <p:password id="pwd2" value="#{usuarios.data.clave}" style="width: 100%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" label="Password 2" required="true"/>
+
+                                </p:column>
+                            </p:row>
+                        </p:panelGrid>
+                        <p:row>
+                            <p:column styleClass="ui-grid-col-12">
+                                <p:commandButton value="Agregar Usuario" action="#{usuarios.usuarioIns()}" style="width: 100%" update="@form"/>
+                                <br/>
+                                <br/>
+                                <p:linkButton outcome="usuarios" value="Atrás" style="width: 100%;" styleClass="ui-button-success">
+
+                                </p:linkButton>
+                            </p:column>
+                        </p:row>
+
+                    </p:fieldset>
+                </h:form>
+            </div>
+        </section>
+    </ui:define>
+</ui:composition>

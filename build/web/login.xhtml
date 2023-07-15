@@ -1,0 +1,64 @@
+<ui:composition template="/WEB-INF/template/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <ui:param name="title" value="Login"/>
+    <ui:define name="content">
+        
+        <div class="container">
+            <input type="hidden" id="idusersesion" value="#{usuarios.idusersesion}" />
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <br></br>
+                                <h:form>
+                                    
+                                    <!--CORREO-->
+                                    <h:outputLabel for="email" value="Ingresa tu Correo: "/><br/>
+                                    <h:inputText id="email"  value="#{usuarios.data.correo}" class="form-control mb-2" required="true" requiredMessage="Se necesita un valor">
+                                        <f:validateLength minimum="10"/>
+                                        <f:validator validatorId="EmailValidator"/>
+                                    </h:inputText>
+                                    <p:message for="email" id="msgCorreo" showDetail="true"/>
+                                    <br/>
+
+                                    <!--CONTRASEÑA-->
+                                    <h:outputLabel for="password" value="Ingresa tu Contraseña: "/><br/>
+                                    <p:password id="password" value="#{usuarios.data.clave}" toggleMask="false" redisplay="true" class="form-control w-100" required="true" requiredMessage="Se necesita un valor"/><br/>
+                                    <p:message for="password" id="msgPassword"  class="mt-2 mb-6" showDetail="true"/>
+                                    <br/>
+
+                                    <!--BOTON-->
+                                    <p:commandButton value="Ingresar" action="#{usuarios.usuarioLogin()}" class="btn_general2 w-100"
+                                                     style="background-color: #f76b6a; color: white; border: none;" update="msgCorreo msgPassword"/>
+
+                                </h:form>
+                                <h:outputText value="#{usuarios.msg}" />
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <a href="#{request.contextPath}/"><h:graphicImage name="img/fondoL.jpg" class="w-50"/></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $(document).scroll(function () {
+                    var $nav = $("header");
+                    $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
+                });
+            });
+        </script>
+    </ui:define>
+
+</ui:composition>

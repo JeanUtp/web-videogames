@@ -1,0 +1,85 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+            <footer id="footer" class="section footer">
+                <div class="container">
+                    <div class="footer-container">
+                        <div class="footer-center">
+                            <h4>EXTRAS</h4>
+                            <a href="#">Marcas</a>
+                            <a href="#">Certificado de regalo</a>
+                            <a href="#">Afiliado</a>
+                            <a href="#">Especiales</a>
+                            <a href="#">Mapa del sitio</a>
+                        </div>
+                        <div class="footer-center">
+                            <h4>INFORMACIÓN</h4>
+                            <a href="#">Quienés somos</a>
+                            <a href="#">Política de privacidad</a>
+                            <a href="#">Terminos y condiciones</a>
+                            <a href="#">Contáctenos</a>
+                            <a href="#">Mapa del sitio</a>
+                        </div>
+                        <div class="footer-center">
+                            <h4>MI CUENTA</h4>
+                            <a href="#">Mi cuenta</a>
+                            <a href="#">Historial de pedidos</a>
+                            <a href="#">Lista de deseos</a>
+                            <a href="#">Boletin de blog</a>
+                            <a href="#">Devoluciones</a>
+                        </div>
+                        <div class="footer-center">
+                            <h4>CONTACTOS</h4>
+                            <div>
+                                <span>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                                <h7 class="otro">Mz G-2 lote 8 Viña</h7>
+                            </div>
+                            <div>
+                                <span>
+                                    <i class="far fa-envelope"></i>
+                                </span>
+                                <h7 class="otro">assiamarket@gmail.com</h7>
+                            </div>
+                            <div>
+                                <span>
+                                    <i class="fas fa-phone"></i>
+                                </span>
+                                <h7 class="otro">456-456-4512</h7>
+                            </div>
+                            <div>
+                                <span>
+                                    <i class="far fa-paper-plane"></i>
+                                </span>
+                                <h7 class="otro">Dream City, Lima</h7>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-container" style="z-index: 999999;">
+                    <div id="chat-header">
+                      <p>ChatGPT Recommender</p>
+                      <button id="minimize-button"><i class="fa-solid fa-x" style="color: #ffffff;"></i></button>
+                    </div>
+                    <div id="chat-body">
+                      <!-- Aquí se mostrarán los mensajes del chat -->
+                    </div>
+                    <div id="chat-footer">
+                      <input
+                        type="text"
+                        id="message-input"
+                        placeholder="Escribe tu mensaje..."
+                      />
+                      <button id="send-button"><i class="fa-solid fa-share" style="color: #f76b6a"></i></button>
+                    </div>
+                  </div>
+
+                  <div id="chat-float-button" style="z-index: 999998;">
+                    <button id="toggle-chat-button"><i class="fa-solid fa-message"></i></button>
+                  </div>
+                  <script src="resources/js/script.js"></script>
+            </footer>
+</ui:composition>

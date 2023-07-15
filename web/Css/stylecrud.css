@@ -1,0 +1,116 @@
+:root {
+    --primary: #69ae14;
+    --white: #fff;
+    --black: #222;
+    --grey1: #3a3b3c;
+    --grey2: #828282;
+  }
+  
+  .container {
+    max-width: 114rem;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 1200px) {
+    .container {
+      padding: 0 3rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      max-width: 60rem;
+    }
+  }
+  
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* PROMOTION */
+  .section {
+    padding: 3rem 0 1rem 0;
+    overflow: hidden;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .cart-info {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .cart-info span {
+    color: var(--grey2);
+  }
+  
+  th {
+    text-align: left;
+    padding: 0.5rem;
+    background-color: white; 
+    color: black;
+    font-weight: normal;
+  }
+  
+  
+  td {
+    padding: 1rem 0.5rem;
+  }
+  
+  td input {
+    width: 5rem;
+    height: 3rem;
+    padding: 0.5rem;
+  }
+  
+  td a {
+    color: var(--primary);
+    font-size: 1.4rem;
+  }
+  
+  td img {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 1rem;
+  }
+  
+  .total-price {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+  
+  .total-price a {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.7rem 1.6rem;
+    font-weight: 700;
+    border-radius: 3rem;
+  }
+  
+  .total-price table {
+    border-top: 3px solid #f76b6a;
+    width: 100%;
+    max-width: 35rem;
+  }
+  
+  td:last-child {
+    text-align: right;
+  }
+  
+  th:last-child {
+    text-align: right;
+  }
+  
+  @media (max-width: 567px) {
+    .cart-info p {
+      display: none;
+    }
+  }

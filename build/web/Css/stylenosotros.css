@@ -1,0 +1,126 @@
+:root{
+  --dark: #1a1a1a;
+  --white: rgb(0, 0, 0);
+  --light-grey: #efefef;
+  --gold: #ecd5a7;
+}
+body{
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: .05rem;
+}
+.bg-dark{
+  background-color: var(--dark) !important;
+}
+.bg-light{
+  background-color: var(--white);
+  letter-spacing: .09rem;
+  font-size: 5px;
+}
+.bg-light-grey{
+  background-color: aliceblue;
+}
+
+
+
+.nav-link{
+  color: var(--white);
+  margin-left: 60px;
+  font-size: 20px;
+}
+.navbar{
+  min-height: 5rem;
+}
+h1, h2, h3, h4, h5, h6, .navbar-brad{
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+}
+.nav-link:hover{
+  color: rgb(155, 155, 155);
+}
+a:hover{
+  text-decoration: none;
+}
+.logo-brand{
+  min-width: 160px;
+  max-width: 180px;
+}
+.navbar-toggler{
+  font-size: 40px;
+}
+.navbar-toggler:focus{
+  outline: none;
+}
+
+
+
+.text-gold{
+  color: var(--gold);
+}
+.text-dark{
+  color: var(--dark) !important;
+}
+.text-light{
+  color: var(--white) !important;
+}
+.mt-6{
+  margin-top: 2rem;
+}
+
+
+
+.section-nosotros{
+  top: 50px;
+}
+.blog-info{
+  color: var(--white);
+  bottom: 1rem;
+  left: 1.5rem;
+}
+.form-control{
+  padding: 1rem;
+  font-weight: 300;
+  border: 0;
+}
+.form-control:focus{
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--dark);
+}
+.btn-secondary{
+  background-color: var(--dark);
+}
+.btn{
+  padding: .5rem 1.8rem;
+  border-radius: .2rem;
+}
+.text-21{
+  font-size: 15px;
+}
+.separado{
+  padding-right: 10px;
+}
+p{
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+
+
+.topmargin-xs{
+  margin-top: 15px important;
+}
+.topmargin-sm{
+  margin-top: 30px important;
+}
+.topmargin-sm p{
+  color: rgb(131, 131, 131);
+}
+.topmargin-lg{
+  margin-top: 60px !important;
+}
+
+

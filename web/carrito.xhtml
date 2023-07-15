@@ -1,0 +1,148 @@
+<ui:composition template="/WEB-INF/template/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                >
+
+    <ui:param name="title" value="Inicio"/>
+    <ui:define name="content">
+        
+        <div class="container-fluid">
+            <input type="hidden" id="idusersesion" value="#{usuarios.idusersesion}" />
+            <br/>
+            <div class="row">
+                <div class="col-md-7">
+                    <h:dataTable value="#{ventas.listaCarrito}" var="lis" border="1" class="table" >
+                        <h:column >
+                            <f:facet name="header" class="thead-dark" id="accion-header">
+                                Acciones
+                            </f:facet>
+                            <h:form>
+                                <h:commandButton action="#{ventas.cantidadAgr(lis.pro.id,lis.cantidad)}"
+                                                 style="background-color: #f76b6a; color: white; 
+                                                 border: 1px solid white; width: 30%; height: 40px;"
+                                                 value="+1" />
+                                <h:commandButton action="#{ventas.cantidadDis(lis.pro.id,lis.cantidad)}"
+                                                 style="background-color: #f76b6a; color: white; 
+                                                 border: 1px solid white; width: 30%; height: 40px;"
+                                                 value="-1" />
+                                <h:commandButton action="#{ventas.quitarProducto(lis.pro.id)}" 
+                                                 style="border: 1px solid white; width: 60%; height: 40px;"
+                                                 value="Quitar" />
+                            </h:form>
+                        </h:column>
+                        <h:column >
+                            <f:facet name="header" class="thead-dark">
+                                Nombre
+                            </f:facet>
+                            <h:outputText value="#{lis.pro.nombre}"  />
+                        </h:column>
+                        <!--<h:column>
+                            <f:facet name="header" class="thead-dark">
+                                Imagen
+                            </f:facet>
+                            <h:graphicImage library="img" name="producto.png" width="20" height="20" />
+                        </h:column>-->
+                        <h:column>
+                            <f:facet name="header" class="thead-dark">
+                                Precio
+                            </f:facet>
+                            <h:outputText value="#{lis.pro.precio}" />
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header" class="thead-dark">
+                                Cantidad
+                            </f:facet>
+                            <h:outputText value="#{lis.cantidad}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header" class="thead-dark">
+                                Subtotal
+                            </f:facet>
+                            <h:outputText value="#{lis.subtotal}" />
+                        </h:column>
+
+
+                    </h:dataTable>
+
+                </div>
+                <div class="col-md-1">
+				<div class="v-line">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<center>
+					<div class="table-responsive" style="width: 85%;">
+						<table class="table">
+							<thead>
+								<tr>
+								  <th scope="col" style="text-align: center;">TOTAL DEL CARRITO</th>
+								</tr>
+							  </thead>
+							  <tbody >
+								  <tr>
+									<td> 
+										<span style="color: #606060;float:left;">
+											Subtotal
+										</span>
+										<span style="font-weight: bold; float:right;" >
+											S/#{ventas.totalBruto}
+										</span>
+									</td>
+								  </tr>
+									
+								  <tr>
+									<td >
+										<span style="color: #606060;float:left;">
+											Envío
+										</span>
+										<span style="font-weight: bold; float:right;" >
+                                                                                    S/#{ventas.tax}
+										</span>
+									</td>
+									</tr>
+									<tr>
+										<td> 
+											<span style="color: #606060;float:left;">
+												Total
+											</span>
+											<span style="font-weight: bold; float:right;" >
+												S/#{ventas.totalPagar}
+											</span>
+										</td>
+									  </tr>
+									  <tr>
+										<td> 
+											<span style="color: #606060;float:left;margin-bottom: 10px;">
+												<i class="fa-solid fa-map"></i> Destino
+                                                                                                
+											</span>
+                                                                                        <span>
+                                                                                            <input type="text"  class="form-control" 
+                                                                                                   value="#{ventas.direccion}" placeholder="Dirección exacta"/>
+                                                                                        </span>
+										</td>
+									  </tr>
+									  <tr>
+										  <td>
+											  
+											  <br/>
+                                                                                          <p:commandButton value="Finalizar Compra" action="#{ventas.comprar()}" 
+                                                                                            class="btn_general2 w-100"
+                                                                                            style="background-color: #f76b6a; color: white; border: none;"
+                                                                                            />
+										  </td>
+									  </tr>
+							  </tbody>
+						</table>
+					</div>
+				</center>
+			</div>
+                </div>
+            </div>
+
+    </ui:define>
+</ui:composition>

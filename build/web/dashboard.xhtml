@@ -1,0 +1,21 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+            xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <title>#{title}</title>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+    </h:head>
+    <h:body>
+        <p:commandButton value="Graficar" actionListener="#{PieChart.graficar()}" update="panel"/>
+
+            <h:panelGroup id="panel" layout="block">
+                <p:chart type="pie" model="#{PieChart.pieModel}" style="width:400px;height:300px;" rendered="#{PieChart.pieModel !=null}" />  
+            </h:panelGroup>
+    </h:body>
+</html>
+

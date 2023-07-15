@@ -1,0 +1,154 @@
+<ui:composition template="/WEB-INF/template/layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                >
+
+    <ui:param name="title" value="Inicio"/>
+    <ui:define name="content">
+      <div >
+          <input type="hidden" id="idusersesion" value="#{usuarios.idusersesion}" />
+            <div class="hero">
+                <div class="row">
+                    <div class="swiper slider-1">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="Imag/slider1.jpg" alt=""></img>
+                                <div class="content">
+                                    <h1 style="color: white;">street <br> fighter </br>
+                                        <span>Nuevo</span>
+                                    </h1>
+                                    <a href="">Compra ya!</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Imag/slider2.jpg" alt=""></img>
+                                <div class="content">
+                                    <h1>Mario <br> bros </br>
+                                        <span>Nuevo</span>
+                                    </h1>
+                                    <a href="">Compra ya!</a>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Imag/slider3.jpg" alt=""></img>
+                                <div class="content">
+                                    <h1 style="color: white;">Grand <br>the auto
+                                        </br>
+                                        <span>Nuevo</span>
+                                    </h1>
+                                    <a href="">Compra ya!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="arrows d-flex">
+                    <div class="swiper-prev d-flex">
+                        <i class="fas fa-chevron-left swiper-icon"></i>
+                    </div>
+                    <div class="swiper-next d-flex">
+                        <i class="fas fa-chevron-right swiper-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="speciality" id="speciality">
+            <h1 class="heading">Nuestros productos <span>especiales</span> </h1>
+            <div class="box-container">
+                <div class="box">
+                    <img src="Imag/g-1.jpg" alt="" class="image"></img>
+                    <div class="content">
+                        <img src="Imag/sauce.png" alt=""></img>
+                        <h3>SALSA Y ESPECIAS</h3>
+                        <p>INGREDIENTES SECRETOS DEL CHEF</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="Imag/g-3.jpg" alt="" class="image"></img>
+                    <div class="content">
+                        <img src="Imag/ramen.png" alt=""></img>
+                        <h3>FIDEOS INSTANTÁNEOS </h3>
+                        <p>FIEBRE CALIENTE COREANA Y SABOR TRADICIONAL</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="Imag/g-2.jpg" alt="" class="image"></img>
+                    <div class="content">
+                        <img src="Imag/coffee.png" alt=""></img>
+                        <h3>CAFÉ Y TÉ</h3>
+                        <p>BEBER, RELAJARSE Y REVITALIZARSE</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="Imag/g-4.jpg" alt="" class="image"></img>
+                    <div class="content">
+                        <img src="Imag/snack.png" alt=""></img>
+                        <h3>MERIENDA Y BOCADITOS</h3>
+                        <p>LOS APERITIVOS MÁS POPULARES Y FAVORITOS DE COREA</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="Imag/g-6.jpg" alt="" class="image"></img>
+                    <div class="content">
+                        <img src="Imag/grain.png" alt=""></img>
+                        <h3>GRANOS Y FRIJOLES</h3>
+                        <p>NATURAL SALUDABLE ORGÁNICO DE LA TIERRA</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="Imag/g-5.jpg" alt="" class="image"></img>
+                    <div class="content">
+                        <img src="Imag/drink.png" alt=""></img>
+                        <h3>MEJORES BEBIDAS</h3>
+                        <p>LOS MAS POPULARES DE COREA</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="banner-container">
+            <div class="banner">
+                <img src="Imag/banner-1.jpg" alt=""></img>
+                <div class="content">
+                    <h5><b>Este es el mes</b></h5>
+                    <p>Los recién llegados</p>
+                    <a href="#" class="btn">Verificarlo</a>
+                </div>
+            </div>
+            <div class="banner">
+                <img src="Imag/banner-2.jpg" alt=""></img>
+                <div class="content">
+                    <h5><b>Super venta</b></h5>
+                    <p>semanal</p>
+                    <a href="#" class="btn">Verificarlo</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="step-container">
+            <h1 class="heading"><span><b>¿COMÓ TRABAJAMOS?</b></span></h1>
+            <section class="steps">
+                <div class="box">
+                    <img src="Imag/step-1.jpg" alt=""></img><br></br><br></br>
+                    <h5><b>Escoge tu pedido <br> favorito</br></b></h5>
+                </div>
+                <div class="box">
+                    <img src="Imag/step-2.jpg" alt=""></img><br></br><br></br>
+                    <h5><b>Entrega<br>rápida y gratuita</br></b></h5>
+                </div>
+                <div class="box">
+                    <img src="Imag/step-3.jpg" alt=""></img><br></br><br></br>
+                    <h5><b>Métodos de pago<br>fáciles</br></b></h5>
+                </div>
+                <div class="box">
+                    <img src="Imag/step-4.jpg" alt=""></img><br></br><br></br>
+                    <h5><b>Y por ultimo,<br>disfrutas de tu pedido</br></b></h5>
+                </div>
+            </section>
+        </div>
+        
+    </ui:define>
+</ui:composition>

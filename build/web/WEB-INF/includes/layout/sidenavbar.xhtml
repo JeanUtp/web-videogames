@@ -1,0 +1,70 @@
+
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <div class="nav" id="navbar">
+        <nav class="nav__container">
+            <div>
+                <div class="nav__list">
+                    <div class="nav__items">
+                        <a href="../../" class="nav__subtitle__img">
+                            <h:graphicImage name="img/loggo1.png" class="header__img__side"/>
+                        </a>
+                        <!--<div style="margin-bottom: 20px;">
+                            <h4 class="nav__subtitle">ÁREA:</h4>
+                            <h5 class="nav__subtitle_name">Administrativa</h5>
+                        </div>-->
+                        
+                        <div class="nav__link">
+                            <i class="fas fa-chart-line nav__icon"></i>
+                            <h:link class="nav__name" outcome="dashboard" value=" Dashboard"/>
+                        </div>
+                        <div class="nav__link">
+                            <i class="fas fa-user nav__icon"></i>
+                            <h:link class="nav__name" outcome="usuarios" value=" Usuarios"/>
+                        </div>
+                        <div class="nav__link">
+                            <i class="fas fa-box nav__icon"></i>
+                            <h:link class="nav__name" outcome="productos" value=" Productos"/>
+                        </div>
+                        <div class="nav__link">
+                            <i class="fas fa-layer-group nav__icon"></i>
+                            <h:link class="nav__name" outcome="categorias" value=" Categorias"/>
+                        </div>
+                        <div class="nav__link">
+                            <i class="fas fa-parachute-box nav__icon"></i>
+                            <h:link class="nav__name" outcome="proveedores" value=" Proveedores"/>
+                        </div>
+                        <div class="nav__link">
+                            <i class="fas fa-car nav__icon"></i>
+                            <h:link class="nav__name" outcome="motorizados" value=" Motorizados"/>
+                        </div>
+                        <div class="nav__link">
+                            <i class="fas fa-tag nav__icon"></i>
+                            <h:link class="nav__name" outcome="pedidos" value=" Pedidos"/>
+                        </div>
+                        <div class="nav__link">
+                            <i class="fas fa-pen nav__icon"></i>
+                            <h:link class="nav__name" outcome="micuenta" value=" Mi cuenta"/>
+                        </div>
+                        <div class="nav__link">
+                            <i class="fas fa-heart nav__icon"></i>
+                            <h:link class="nav__name" outcome="misPedidos" value=" Mis pedidos"/>
+                        </div>
+                        <div class="nav__link nav__logout">
+                            <i class="fas fa-sign-out-alt nav__icon"></i>
+                            <h:link class="nav__name" outcome="logout" value="Cerrar sesión"/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </nav>
+    </div>
+</ui:composition>

@@ -1,0 +1,164 @@
+<ui:composition template="/WEB-INF/template/layout2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" 
+                >
+
+    <ui:param name="title" value="Dashboard"/>
+    <ui:define name="content">
+        <p:panelGrid columns="3"
+                     columnClasses="ui-grid-col-4,ui-grid-col-8,ui-grid-col-4,ui-grid-col-8"
+                     layout="grid" id="gridx"
+                     styleClass="ui-panelgrid-blank ui-fluid"
+                     style="border:0px none; background-color:transparent;">
+            <p:row>
+                <p:column styleClass="ui-grid-col-4" style='background-color: transparent'>
+                    <center><div class="card" style='height:100px;width: 300px;background-color: white;'>
+                            <p:panelGrid columns="2"
+                                         columnClasses="ui-grid-col-4,ui-grid-col-8,ui-grid-col-4,ui-grid-col-8"
+                                         layout="grid" id="grid3"
+                                         styleClass="ui-panelgrid-blank ui-fluid"
+                                         style="border:0px none; background-color:transparent;">
+                                <p:row>
+                                    <p:column styleClass="ui-grid-col-6" >
+                                        <label class="card-title" style='font-size: 40px'><strong>69</strong></label>
+                                        <p class="card-text" style='font-size: 17px'>Productos</p>
+                                    </p:column>
+                                    <p:column styleClass="ui-grid-col-6" >
+                                        <h:graphicImage library="img" name="logoProductos.PNG" width="80"/>
+
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>
+                        </div></center>
+                </p:column>
+                <p:column styleClass="ui-grid-col-4" style='background-color: transparent' >
+                    <center><div class="card" style='height:100px;width: 300px;background-color: white;'>
+                            <p:panelGrid columns="2"
+                                         columnClasses="ui-grid-col-4,ui-grid-col-8,ui-grid-col-4,ui-grid-col-8"
+                                         layout="grid" id="grid2"
+                                         styleClass="ui-panelgrid-blank ui-fluid"
+                                         style="border:0px none; background-color:transparent;">
+                                <p:row>
+                                    <p:column styleClass="ui-grid-col-6" >
+                                        <label class="card-title" style='font-size: 40px'><strong>602</strong></label>
+                                        <p class="card-text" style='font-size: 17px'>Ventas</p>
+                                    </p:column>
+                                    <p:column styleClass="ui-grid-col-6" >
+                                        <h:graphicImage library="img" name="logoVentas.PNG" width="80"/>
+
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>
+                        </div></center>
+                </p:column>
+                <p:column styleClass="ui-grid-col-4" style='background-color: transparent'>
+                    <center><div class="card" style='height:100px;width: 300px;background-color: white;'>
+                            <p:panelGrid columns="2"
+                                         columnClasses="ui-grid-col-4,ui-grid-col-8,ui-grid-col-4,ui-grid-col-8"
+                                         layout="grid" id="grid"
+                                         styleClass="ui-panelgrid-blank ui-fluid"
+                                         style="border:0px none; background-color:transparent;">
+                                <p:row>
+                                    <p:column styleClass="ui-grid-col-6" >
+                                        <label class="card-title" style='font-size: 40px'><strong>8</strong></label>
+                                        <p class="card-text" style='font-size: 17px'>Delivery</p>
+                                    </p:column>
+                                    <p:column styleClass="ui-grid-col-6" >
+                                        <h:graphicImage library="img" name="logoDelevery.PNG" width="80"/>
+
+                                    </p:column>
+                                </p:row>
+                            </p:panelGrid>
+                        </div></center>
+                </p:column>
+
+            </p:row>
+        </p:panelGrid>
+
+        <br/><br/>
+        <BR/>
+        <section class="about" id="about">
+
+            <h:form>
+                <p:commandButton value="Refrescar" actionListener="#{BarChartH.graficar()}" update="panel2"/>
+
+                <h:panelGroup id="panel2" layout="block">
+                    <p:chart type="bar" model="#{BarChartH.barChartModel}" style="height:300px;width:740px;" rendered="#{BarChartH.barChartModel !=null}" />  
+                </h:panelGroup>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Refrescar" actionListener="#{PieChart.graficar()}" update="panel"/>
+
+                <h:panelGroup id="panel" layout="block">
+                    <p:chart type="pie" model="#{PieChart.pieModel}" style="width:400px;height:300px;" rendered="#{PieChart.pieModel !=null}" />  
+                </h:panelGroup>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Refrescar" actionListener="#{LineChart.graficar()}" update="panel3"/>
+
+                <h:panelGroup id="panel3" layout="block">
+                    <p:chart type="line" model="#{LineChart.lineChart}" style="width:1200px;height:300px;" rendered="#{LineChart.lineChart !=null}" />  
+
+                </h:panelGroup>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Refrescar" actionListener="#{BarChartHorizontal.graficar()}" update="panel4"/>
+
+                <h:panelGroup id="panel4" layout="block">
+                    <p:chart type="bar" model="#{BarChartHorizontal.horizontalBarModel}" style="width:1200px;height:300px;" rendered="#{BarChartHorizontal.horizontalBarModel !=null}" />  
+
+                </h:panelGroup>
+            </h:form>
+
+            <h:form>
+                <p:commandButton value="Refrescar" actionListener="#{BarChartMenos.graficar()}" update="panel5"/>
+
+                <h:panelGroup id="panel5" layout="block">
+                    <p:chart type="bar" model="#{BarChartMenos.barChartModel}" style="height:300px;width:540px;" rendered="#{BarChartMenos.barChartModel !=null}" />  
+
+                </h:panelGroup>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Refrescar" actionListener="#{BarChartMas.graficar()}" update="panel6"/>
+
+                <h:panelGroup id="panel6" layout="block">
+                    <p:chart type="bar" model="#{BarChartMas.barChartModel}" style="height:300px;width:580px;" rendered="#{BarChartMas.barChartModel !=null}" />  
+
+                </h:panelGroup>
+            </h:form>
+
+
+
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="sweetalert2.all.min.js"></script>
+            <script>
+                     let timerInterval
+                Swal.fire({
+                  title: 'Productos bajos en Stock',
+                  html: 'CANDY COLA 100 GR, YOGOVERA PINEAPPLE 500 ML y LOTTE WAFFLE 40GR',
+                  timer: 10000,
+                  timerProgressBar: true,
+                  didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                      b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                  },
+                  willClose: () => {
+                    clearInterval(timerInterval)
+                  }
+                }).then((result) => {
+                  /* Read more about handling dismissals below */
+                  if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                  }
+                })
+            </script>
+        </section>
+
+    </ui:define>
+</ui:composition>

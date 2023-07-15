@@ -1,0 +1,72 @@
+<ui:composition template="/WEB-INF/template/layout2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <ui:param name="title" value="Proveedores"/>
+    <ui:define name="content">
+        <section class="about" id="about">
+            <h:form>
+                <p:toolbar>
+                    <p:toolbarGroup>
+                        <p:commandButton value="Nuevo" action="#{proveedores.insertar()}" icon="pi pi-plus" styleClass="ui-button-success" style="margin-right: .5rem">
+                            <p:resetInput target=""/>
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                    <p:toolbarGroup align="right">
+                        <p:fileUpload mode="simple" skinSimple="true" label="Import" chooseIcon="pi pi-download"/>
+                        <p:commandButton value="Export" icon="pi pi-upload" styleClass="ui-button-help" ajax="false">
+                            <p:dataExporter type="pdf" target="dt-products" fileName="products"/>
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                </p:toolbar>
+                <div class="card">
+                    <h3>Proveedores</h3>
+                    <p:dataTable var="lis" value="#{proveedores.proveedorSel()}" reflow="true" rows="5" paginator="true">
+                        <p:column headerText="Id">
+                            <h:outputText value="#{lis.id}"/>
+                        </p:column>
+
+                        <p:column headerText="Proveedor">
+                            <h:outputText value="#{lis.nombre}"/>
+                        </p:column>
+
+                        <p:column headerText="RUC">
+                            <h:outputText value="#{lis.ruc}"/>
+                        </p:column>
+
+                        <p:column headerText="Número">
+                            <h:outputText value="#{lis.numero}"/>
+                        </p:column>
+                        <p:column headerText="Dirección">
+                            <h:outputText value="#{lis.direccion}"/>
+                        </p:column>
+                        <p:column headerText="Correo">
+                            <h:outputText value="#{lis.correo}"/>
+                        </p:column>
+                        <p:column headerText="Modificar">
+                            <p:commandButton icon="pi pi-pencil" action="#{proveedores.proveedorGet(lis.id)}"
+                                             styleClass="edit-button rounded-button ui-button-success" >
+                            </p:commandButton>
+                        </p:column>
+                        <p:column >
+                            <f:facet name="header">
+                                <h:commandButton  id="delete" value="Eliminar" action="delete"
+                                                  onclick="proveedorDel();"  />
+                            </f:facet>
+
+                            <input class="form-check-input" type="checkbox" value="${lis.id}" name="id_del"
+                                   id="flexCheckDefault" /> 
+
+                        </p:column>
+                    </p:dataTable>
+                </div>
+
+
+            </h:form>
+             <script src="../../resources/js/proveedor.js"></script>
+        </section>
+    </ui:define>
+</ui:composition>

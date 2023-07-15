@@ -1,0 +1,46 @@
+<ui:composition template="/WEB-INF/template/layout2.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" >
+
+    <ui:param name="title" value="Pedidos"/>
+    <ui:define name="content">
+        <section class="about" id="about">
+            <h:form>
+                <p:toolbar>
+                    <p:toolbarGroup align="right">
+                        <p:commandButton value="${pedidos.msgEstado}" rendered="#{pedidos.btnTrazabilidad}" 
+                                         action="#{pedidos.cambiarEstado()}" styleClass="ui-button-help">
+                        </p:commandButton>
+                    </p:toolbarGroup>
+                </p:toolbar>
+                <div class="card">
+                    <h3>Detalle del Pedido ${pedidos.data.id}</h3>
+                      <h:link outcome="pedidos" value="Regresar"/><br/><br/>
+                    <p:dataTable var="lis" value="#{pedidos.pedidoGet(pedidos.data.id)}" reflow="true" rows="5" paginator="true">
+                        <p:column headerText="Producto">
+                            <h:outputText value="#{lis.det.pro.nombre}"/>
+                        </p:column>
+
+                        <p:column headerText="Precio unitario">
+                            <h:outputText value="S/ #{lis.det.pro.precio}"/>
+                        </p:column>
+
+                        <p:column headerText="Cantidad">
+                            <h:outputText value="#{lis.det.cantidad}"/>
+                        </p:column>
+
+                        <p:column headerText="SubTotal">
+                            <h:outputText value="S/ #{lis.det.subtotal}"/>
+                        </p:column>
+                      
+                    </p:dataTable>
+                </div>
+
+            </h:form>
+            
+        </section>
+    </ui:define>
+</ui:composition>
