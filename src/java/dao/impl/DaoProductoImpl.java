@@ -6,6 +6,9 @@ import model.Producto;
 import model.Proveedor;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
@@ -13,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import model.Filtro;
@@ -72,7 +76,18 @@ public class DaoProductoImpl implements DaoProducto {
                 producto.setDescripcion(rs.getString(3));
                 producto.setPrecio(rs.getDouble(4));
                 producto.setStock(rs.getInt(5));
-                producto.setFoto(rs.getAsciiStream(6));
+                           
+                
+
+                if(rs.getAsciiStream(6) != null){
+                    InputStream blobStream = rs.getBinaryStream(6);
+                    byte[] bytes = toByteArray(blobStream);
+                   String base64String = Base64.getEncoder().encodeToString(bytes);
+                    producto.setBase64Image(base64String);
+                }else{
+                    producto.setFoto(rs.getAsciiStream(6));
+                }
+
                 producto.setCat(categoria);
                 producto.setPro(proveedor);
 
@@ -82,6 +97,16 @@ public class DaoProductoImpl implements DaoProducto {
             mensaje = e.getMessage();
         }
         return list;
+    }
+    
+    private static byte[] toByteArray(InputStream inputStream) throws SQLException, IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[4096];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            byteArrayOutputStream.write(buffer, 0, bytesRead);
+        }
+        return byteArrayOutputStream.toByteArray();
     }
 
     /**
@@ -148,7 +173,16 @@ public class DaoProductoImpl implements DaoProducto {
             ps.setString(2,pro.getDescripcion());
             ps.setDouble(3, pro.getPrecio());
             ps.setInt(4,pro.getStock());
-            ps.setAsciiStream(5, pro.getFoto());
+            
+            if(pro.getBase64Image().length() > 0){
+                byte[] decodedBytes = Base64.getDecoder().decode(pro.getBase64Image());
+                InputStream inputStream = new ByteArrayInputStream(decodedBytes);
+                ps.setBlob(5, inputStream);
+                
+            }else{
+                ps.setBlob(5, pro.getFoto());
+            }
+            
             ps.setInt(6, pro.getCat().getId());
             ps.setInt(7, pro.getPro().getId());
         
@@ -176,7 +210,8 @@ public class DaoProductoImpl implements DaoProducto {
                 .append("preciounidad = ?,")
                 .append("stock = ?,")
                 .append("idcategoria = ?,")
-                .append("idproveedor = ?")
+                .append("idproveedor = ?,")
+                .append("foto = ?")
                 .append(" WHERE idproducto = ?");
 
         try (Connection cn = conectaDb.getConnection()) {
@@ -187,7 +222,18 @@ public class DaoProductoImpl implements DaoProducto {
             ps.setInt(4, pro.getStock());
             ps.setInt(5, pro.getCat().getId());
             ps.setInt(6, pro.getPro().getId());
-            ps.setInt(7, pro.getId());
+            
+            
+            if(pro.getBase64Image().length() > 0){
+                byte[] decodedBytes = Base64.getDecoder().decode(pro.getBase64Image());
+                InputStream inputStream = new ByteArrayInputStream(decodedBytes);
+                ps.setBlob(7, inputStream);
+                
+            }else{
+                ps.setBlob(7, pro.getFoto());
+            }
+            
+            ps.setInt(8, pro.getId());
                       
             int ctos = ps.executeUpdate();
             if (ctos == 0) {
@@ -379,7 +425,126 @@ public class DaoProductoImpl implements DaoProducto {
 
     @Override
     public List<Producto> ProductoSelFiltro(Filtro filtro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean nombreProductoB = filtro.getNombreProducto() != null && filtro.getNombreProducto().length() > 0 ? true : false;
+        boolean cateB = filtro.getIdCategoria() != null && filtro.getIdCategoria() != 0 ? true : false;
+        boolean provB = filtro.getIdProveedor()!= null && filtro.getIdProveedor() != 0 ? true : false;
+        boolean precMaximo = filtro.getPrecioMaximo()!= null && filtro.getPrecioMaximo() > 0 ? true : false;
+        int a=0,b=0,c=0,d=0;
+        
+        
+        List<Producto> list = null;
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ")
+                .append("*")
+                .append(" FROM productos as p")
+                .append(" INNER JOIN ")
+                .append("categorias as c ")
+                .append(" on c.idcategoria = p.idcategoria ")
+                .append("INNER JOIN proveedores as pr on ")
+                .append("pr.idproveedor = p.idproveedor ");
+        
+        boolean first = true;
+        if(nombreProductoB){
+            if(first){
+                first = false;
+                sql.append(" WHERE UPPER(p.nombreproducto) LIKE ? ");
+                a = 1;
+            }else{
+                sql.append(" AND UPPER(p.nombreproducto) LIKE ? ");
+                a = 1;
+            }
+        }
+        if(cateB){
+            if(first){
+                first = false;
+                sql.append(" WHERE p.idcategoria = ? ");
+                b = 1;
+            }else{
+                sql.append(" AND p.idcategoria = ? ");
+                b = 2;
+                
+            }
+        }
+        if(provB){
+            if(first){
+                first = false;
+                sql.append(" WHERE p.idproveedor = ? ");
+                c = 1;
+            }else{
+                sql.append(" AND p.idproveedor = ? ");
+                if(nombreProductoB && cateB){
+                    c = 3;
+                }else {
+                    c = 2;
+                }
+                
+            }
+        }
+        
+        if(precMaximo){
+            if(first){
+                first = false;
+                sql.append(" WHERE p.preciounidad <= ? ");
+                d = 1;
+            }else{
+                sql.append(" AND p.preciounidad <= ? ");
+                if(nombreProductoB && cateB && provB){
+                    d = 4;
+                }else if (nombreProductoB == true && cateB == true && provB == false){
+                    d = 3;
+                }else if (nombreProductoB == true && cateB == false && provB == true){
+                    d = 3;
+                }else if (nombreProductoB == false && cateB == true && provB == true){
+                    d = 3;
+                }else if (nombreProductoB == true && cateB == false && provB == false){
+                    d = 2;
+                }else if (nombreProductoB == false && cateB == false && provB == true){
+                    d = 2;
+                }else if (nombreProductoB == false && cateB == true && provB == false){
+                    d = 2;
+                }
+            }
+        }
+        
+        sql.append(" order by idproducto ASC ");
+        
+        try (Connection cn = conectaDb.getConnection()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            if(nombreProductoB){
+                ps.setString(a, "%"+filtro.getNombreProducto().toUpperCase()+"%");
+            }
+            if(cateB){
+                ps.setInt(b,filtro.getIdCategoria());
+            }
+            if(provB){
+                ps.setInt(c,filtro.getIdProveedor());
+            }
+            if(precMaximo){
+                ps.setDouble(d, filtro.getPrecioMaximo());
+            }
+            
+            
+            ResultSet rs = ps.executeQuery();
+            list = new ArrayList<>();
+            while (rs.next()) {
+                Categoria categoria = new Categoria(rs.getInt(7),rs.getString(10),rs.getString(11));
+                Proveedor proveedor = new Proveedor(rs.getInt(8),rs.getString(14));
+                Producto producto = new Producto();
+                producto.setId(rs.getInt(1));
+                producto.setNombre(rs.getString(2));
+                producto.setDescripcion(rs.getString(3));
+                producto.setPrecio(rs.getDouble(4));
+                producto.setStock(rs.getInt(5));
+                producto.setFoto(rs.getAsciiStream(6));
+                producto.setCat(categoria);
+                producto.setPro(proveedor);
+
+                list.add(producto);
+            }
+        } catch (Exception e) {
+            mensaje = e.getMessage();
+        }
+        return list;
     }
 
 }

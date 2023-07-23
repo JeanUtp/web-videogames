@@ -128,13 +128,15 @@ public class UsuariosService {
         
         try {
             user = dao.UsuarioLogin(data);
-            session.setAttribute("user", user);
-            session.setAttribute("rol", user.getTipo().toUpperCase());
+            
         } catch (Exception e) {
             throw new Exception(dao.getMensaje());
         }
 
         if (user.getId() != null) {
+            session.setAttribute("user", user);
+            session.setAttribute("rol", user.getTipo().toUpperCase());
+            
             if (user.getTipo().toUpperCase().equals("ADMIN")) {
                 redirect = "dashboard/productos?faces-redirect=true";
             } else if (user.getTipo().toUpperCase().equals("CLIENT")) {
@@ -202,14 +204,17 @@ public class UsuariosService {
 
     public String getSesion() {
         String rt = "login";
-        Usuario user = (Usuario) session.getAttribute("user");
-        if (user != null) {
-            if (user.getTipo().toUpperCase().equals("ADMIN")) {
-                rt = "dashboard/productos?faces-redirect=true";
-            } else if (user.getTipo().toUpperCase().equals("CLIENT")) {
-                rt = "dashboard/orders?faces-redirect=true";
+        if(idusersesion != 0){
+            Usuario user = (Usuario) session.getAttribute("user");
+            if (user != null) {
+                if (user.getTipo().toUpperCase().equals("ADMIN")) {
+                    rt = "dashboard/productos?faces-redirect=true";
+                } else if (user.getTipo().toUpperCase().equals("CLIENT")) {
+                    rt = "dashboard/orders?faces-redirect=true";
+                }
             }
         }
+        
         
         return rt;
     }

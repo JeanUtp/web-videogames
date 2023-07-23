@@ -17,6 +17,7 @@
                         filereader.readAsDataURL(file);
                         filereader.onload = function (evt) {
                            var base64 = filereader.result.replace('data:', '').replace(/^.+,/, '');
+                           console.log("base 64: "+base64);
                            remoteCommandFunctionName([{name: 'imagen', value: base64}]);
                         }
                     }

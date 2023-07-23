@@ -91,6 +91,12 @@ public class ProductosService {
         }
         return lista;
     }
+    
+    public List<Producto> productoSel2() {
+        List<Producto> lista = dao.ProductoSel();
+        return lista;
+    }
+
 
     public String productoGet(Integer id) throws Exception {
         base64Image = "";

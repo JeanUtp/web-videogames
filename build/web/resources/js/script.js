@@ -127,10 +127,41 @@ function scrollToBottom() {
 
 // Función para mostrar el mensaje de bienvenida por defecto
 function showDefaultMessage() {
-  const defaultMessage = "Hola, ¿En qué puedo ayudarte?";
-  const timestamp = getFormattedTimestamp();
-  displayMessage(defaultMessage, "bot", timestamp);
-  scrollToBottom();
+  
+    var idusersession = $('#idusersesion').val();
+    console.log("idusersession = "+idusersession);
+    
+    //Llamado a API
+    const url = 'https://chatgptsr.herokuapp.com/api'; // URL del endpoint de la API
+    const data = {
+      consulta: "Hola",
+      idUsuario: idusersession,
+      key: 'l#Y49Ee7Fu*8#6C10Sm1RH8n7#dodP'
+    }; // Datos a enviar en la solicitud
+
+       $.ajax({
+      url: url,
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      success: function(responseData) {
+
+        const timestamp2 = getFormattedTimestamp();
+        if(responseData.resultCode == "1"){
+            displayMessage(responseData.data, "bot", timestamp2);
+        }else{
+            displayMessage("Tengo un error interno, intentelo más tarde.", "bot", timestamp2);
+        }
+        scrollToBottom();
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.error('Error en la solicitud POST:', textStatus, errorThrown);
+        const timestamp2 = getFormattedTimestamp();
+        displayMessage("Tengo un error interno, intente contactarm.", "bot", timestamp2);
+        scrollToBottom();
+      }
+    });
+
 }
 
 // Mostrar mensaje por defecto al cargar la página

@@ -4,20 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/src/java/services/UsuariosService.java</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/src/java/dao/impl/DaoVentasImpl.java</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/src/java/dao/DaoVentas.java</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/registro.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/login.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/tienda.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/paymentBefore.xhtml</file>
+            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/src/java/dao/impl/DaoUsuarioImpl.java</file>
             <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/sesion.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/index.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/carrito.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/payment.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/nosotros.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/src/java/dao/impl/DaoProductoImpl.java</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/success.xhtml</file>
-            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/dashboard.xhtml</file>
+            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/src/java/dao/DaoUsuario.java</file>
+            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/login.xhtml</file>
+            <file>file:/C:/Documentos/Tesis%202/E-commerce/original/WS-Client/web/dashboard/usuarios.xhtml</file>
         </group>
     </open-files>
 </project-private>

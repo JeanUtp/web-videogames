@@ -206,11 +206,11 @@ public class DaoUsuarioImpl implements DaoUsuario {
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT")
                 .append(" * FROM usuarios ")
-                .append("WHERE correousuario = ? AND ")
+                .append("WHERE UPPER(correousuario) = ? AND ")
                 .append("password = AES_ENCRYPT(?,?)");        
         try (Connection cn = conectaDb.getConnection()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
-            ps.setString(1, usu.getCorreo());
+            ps.setString(1, usu.getCorreo().toUpperCase());
             ps.setString(2, usu.getClave());
             ps.setString(3, usu.getClave());
             ResultSet rs = ps.executeQuery();
